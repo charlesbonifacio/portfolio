@@ -28,13 +28,14 @@ img{max-width:100%}
 .tab{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:#8d8d8d;cursor:pointer;padding:8px 0;border-bottom:1px solid transparent;transition:.3s;background:none;border-top:0;border-left:0;border-right:0;font-family:inherit}
 .tab.on{color:#fff;border-bottom-color:#fff}
 .hero{height:220vh;height:220svh;position:relative}
-.stick{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden}
+.stick{position:sticky;top:var(--nh,58px);height:calc(100vh - var(--nh,58px));height:calc(100svh - var(--nh,58px));overflow:hidden}
 .hbg{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#fff,#bdbdbd 55%,#6d6d6d)}
 .hbg2{position:absolute;inset:0;background:radial-gradient(circle at 50% 40%,#3a3d44,#14161a 60%,#000);opacity:0}
-.por{position:absolute;bottom:0;left:50%;height:76vh;height:76svh;aspect-ratio:699/1431;max-width:96vw;transform:translateX(-50%);transform-origin:50% 100%;will-change:transform;z-index:2}
+.por{position:absolute;bottom:0;left:50%;height:82vh;height:82svh;aspect-ratio:699/1431;max-width:96vw;transform:translateX(-50%);transform-origin:50% 100%;will-change:transform;z-index:2}
 .por img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:bottom;filter:drop-shadow(0 0 28px rgba(255,255,255,.10))}
-.hname br{display:none}
-.hname{position:absolute;left:0;right:0;top:12vh;top:12svh;text-align:center;font-weight:800;font-size:clamp(52px,9.4vw,200px);white-space:nowrap;line-height:.9;letter-spacing:-.04em;color:#0b0b0b;will-change:transform}
+.hname{position:absolute;inset:0;text-align:center;font-weight:800;font-size:clamp(60px,11.5vw,230px);white-space:nowrap;line-height:.9;letter-spacing:-.04em;color:#0b0b0b}
+.hname span{position:absolute;left:0;right:0;will-change:transform}
+.hname .n1{top:10vh;top:10svh}.hname .n2{bottom:12vh;bottom:12svh}
 .hsub{position:absolute;left:6vw;bottom:36px;max-width:260px;font-size:14px;line-height:1.5;color:#111;z-index:3}
 .words{position:absolute;right:6vw;bottom:36px;z-index:3;text-align:right;font-weight:800;font-size:clamp(20px,2.6vw,34px);line-height:1.15}
 .words span{display:block;transition:color .4s}
@@ -88,6 +89,9 @@ p.l{color:#a9a9a9;font-size:16px;line-height:1.7;max-width:620px;margin:0}
 .pc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.7s}
 .pc .cap{position:absolute;left:0;right:0;bottom:0;padding:12px;background:linear-gradient(transparent,rgba(0,0,0,.85));font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#eee}
 .pc.ig{display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.pg.embg{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));grid-auto-rows:auto;align-items:start}
+.pc.emb{background:#fff;cursor:default}
+.pc.emb iframe{position:static;width:100%;height:650px;border:0;display:block;background:#fff}
 .pc.ig b{font-size:16px;font-weight:600}.pc.ig small{color:#888;font-size:12px;margin-top:4px}
 .eye{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#1d1d1d;margin-top:36px}
 .eye div{background:#000;padding:28px}.eye h4{margin:0 0 8px;font-size:18px;font-weight:600}.eye p{margin:0;color:#999;font-size:15px;line-height:1.6}
@@ -128,10 +132,10 @@ body.lock{overflow:hidden}
  section.s{padding:72px 5vw}
  .nav{padding-left:5vw;padding-right:0;gap:14px}.nav b{font-size:12px}
  .tabs{gap:18px;padding-right:5vw;-webkit-mask-image:linear-gradient(90deg,#000 85%,transparent);mask-image:linear-gradient(90deg,#000 85%,transparent)}
- .hname{top:9svh;font-size:15vw}.hname br{display:inline}
- .words{left:5vw;right:auto;bottom:auto;top:calc(9svh + 30vw);text-align:left;display:flex;gap:10px;font-size:17px}
+ .hname{font-size:16vw}.hname .n1{top:9svh}.hname .n2{bottom:7svh}
+ .words{left:5vw;right:auto;bottom:auto;top:calc(9svh + 20vw);text-align:left;display:flex;gap:10px;font-size:17px}
  .hsub{display:none}.hint{left:5vw;top:14px}
- .por{height:60svh}
+ .por{height:66svh}
  p.l{font-size:15px}
  .stats{grid-template-columns:repeat(2,1fr);margin-top:28px}.st{padding:20px 14px}.st .d{font-size:12px}
  .feat{flex-direction:column;align-items:flex-start;gap:10px;padding:20px}.feat .btn{width:100%}
@@ -159,7 +163,7 @@ body.lock{overflow:hidden}
 <header class="hero" id="hero"><div class="stick">
 <div class="hbg"></div><div class="hbg2" id="hbg2"></div>
 <div class="hint" id="hint">CB / PORTFOLIO — SCROLL ↓</div>
-<div class="hname" id="hname">CHARLES <br>BONIFACIO.</div>
+<div class="hname" id="hname"><span class="n1" id="n1">CHARLES</span><span class="n2" id="n2">BONIFACIO.</span></div>
 <div class="por" id="por"><img src="assets/charles-cutout.webp" alt="Charles Bonifacio portrait" fetchpriority="high"></div>
 <p class="hsub" id="hsub">Creating visuals. Telling stories. Elevating real estate. Videographer, editor and photographer for Dubai's luxury market.</p>
 <div class="words" id="words"><span>SEE.</span><span>SHOOT.</span><span>EDIT.</span><span>SELL.</span></div>
@@ -181,13 +185,13 @@ body.lock{overflow:hidden}
 
 <section class="s" id="photo"><div class="rv"><div class="k">04 — Behind the camera</div><h2 class="t">Corporate &amp; <span class="it">listing</span> photography.</h2><p class="l">I handle Springfield Properties' property listings, corporate headshots and company photos — lit, framed and retouched so every deliverable earns its place.</p></div>
 <div class="filters rv" id="pfilters"></div><div class="pg" id="pg"></div>
-<div class="rv" style="margin-top:20px"><a class="btn" href="https://drive.google.com/drive/folders/1pvs2SQNaCjw_StgiXPoguYWu4BVD8JDZ?usp=sharing" target="_blank" rel="noopener">See the full photo portfolio ↗</a></div>
+<div class="rv" id="pfull" style="margin-top:20px"><a class="btn" href="https://drive.google.com/drive/folders/1pvs2SQNaCjw_StgiXPoguYWu4BVD8JDZ?usp=sharing" target="_blank" rel="noopener">See the full photo portfolio ↗</a></div>
 <div class="eye rv" id="eye"></div></section>
 
 <section class="s" id="tools"><div class="rv"><div class="k">05 — Toolkit</div><h2 class="t">The tools of the <span class="it">craft.</span></h2></div><div class="marq rv"><div class="mt" id="mt"></div></div></section>
 
 <section class="s" id="about"><div class="k rv">06 — About me</div><div class="abt">
-<div class="ap rv"><img src="assets/charles-cutout.webp" alt="Charles Bonifacio" loading="lazy" style="object-fit:contain;object-position:bottom"></div>
+<div class="ap rv"><img src="assets/charles-dark.jpg" alt="Charles Bonifacio" loading="lazy"></div>
 <div class="rv"><h2 class="t" style="font-size:clamp(32px,4.5vw,60px)">Not just the job.<br><span class="grad">The deliverable.</span></h2><p class="l">I'm a visual storyteller with 7 years behind the camera — 5 in the Philippines and 2 in the UAE. I don't just capture spaces; I turn properties into experiences that show off the architecture and bring every detail to life. I care about what happens after I hand over the file: does it stop the scroll, does it make the property feel worth its price, does it bring the agent a call?</p>
 <div class="exp"><div><b>Senior Content Creator — Springfield Properties</b><small>Nov 2025 – Present · Lead content for CEO Farooq Syed, managers and associate directors; corporate branding and all company photography</small></div><div><b>Content Creator — Springfield Properties</b><small>Apr 2025 – Oct 2025 · Property videos, listing and corporate photos, event reels, agent podcasts</small></div><div><b>Visual content creator — Philippines</b><small>5 years · Photography, video and editing</small></div><div><b>BS Information Technology</b><small>STI College Caloocan, 2018 · English and Tagalog</small></div></div>
 <a class="btn w" href="assets/Charles-Bonifacio-CV.pdf" download>Download CV ↓</a></div></div></section>
@@ -217,7 +221,7 @@ agents:[
  {name:"Farooq Syed",role:"CEO, Springfield Properties",handle:"farooq_syd",followers:"272K",views:"2.8M",init:"FS",img:"assets/agents/farooq.jpg"},
  {name:"Fardeen Ehsan",role:"Luxury real estate agent, Dubai",handle:"fardeenehsanofficial",followers:"11K",views:"1.4M",init:"FE",img:"assets/agents/fardeen.jpg",photo:"1sI_wtl9K1HAjFWbPMQ7oWp7jVOE0ezCB"},
  {name:"Daniela Pires",role:"Real estate agent, Dubai",handle:"danielapires.realtor",followers:"15.8K",views:"53.5K",init:"DP",img:"assets/agents/daniela.jpg"},
- {name:"Luxury Broker DX",role:"Luxury real estate broker, Dubai",handle:"luxurybroker_dx",followers:"101.2K",views:"640K",init:"LB",img:"assets/agents/luxurybroker.jpg"}],
+ {name:"Luxury Broker DXB",role:"Luxury real estate broker, Dubai",handle:"luxurybroker_dxb",followers:"101.2K",views:"640K",init:"LB",img:"assets/agents/luxurybroker.jpg"}],
 flow:[
  ["Read the brief and the buyer","Price point, audience and the one feeling the video has to leave behind."],
  ["Walk the property, find the angles","Before filming I scout every room for leading lines, light direction and the hero shot that sells the space."],
@@ -295,9 +299,9 @@ filters($('#vfilters'),[["all","All reels"],["deal","Deal closers"],["farooq","F
 $('#lg').innerHTML=DATA.vlogs.map(v=>`<div class="lc" data-u="${YT(v.id)}" role="button" tabindex="0"><img src="https://img.youtube.com/vi/${v.id}/${MOBILE?'hqdefault':'maxresdefault'}.jpg" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/${v.id}/hqdefault.jpg'"><div class="pl">▶</div><div class="ov"><span class="tg">YouTube · ${v.t}</span><div class="pr">${v.p}</div><div class="m"><span>◉ ${fmt(v.v)} views</span><span>♥ ${fmt(v.l)}</span></div></div></div>`).join('');
 document.querySelectorAll('.lc').forEach(e=>e.onclick=()=>openM(e.dataset.u));
 $('#feat').onclick=()=>openM(DATA.videos[1].url);
-function drawP(c){let h;if(c=='ig'){h=DATA.igPosts.map((u,i)=>`<div class="pc ig" data-u="${u}" role="button" tabindex="0"><b>Company photo 0${i+1}</b><small>Springfield Properties · Instagram ↗</small></div>`).join('')}else{h=DATA.photos.filter(p=>c=='all'||p.cat==c).map(p=>`<div class="pc ${c=='all'?p.c:(p.cat=='corporate'?'h':'')}" data-img="${p.id}" role="button" tabindex="0"><img src="${DRIVE(p.id)}" alt="${p.l}" loading="lazy" decoding="async"><div class="cap">${p.l}</div></div>`).join('')}
-$('#pg').innerHTML=h;document.querySelectorAll('.pc[data-u]').forEach(e=>e.onclick=()=>openM(e.dataset.u));document.querySelectorAll('.pc[data-img]').forEach(e=>e.onclick=()=>openImg(e.dataset.img))}
-filters($('#pfilters'),[["all","All"],["listing","Property listings"],["corporate","Corporate headshots"],["ig","Company posts"]],drawP);drawP('all');
+function drawP(c){let h;if(c=='ig'){h=DATA.igPosts.map((u,i)=>`<div class="pc emb"><iframe src="${embed(u)[0]}/captioned" loading="lazy" scrolling="no" allowtransparency="true" title="Springfield Properties Instagram post ${i+1}"></iframe></div>`).join('')}else{h=DATA.photos.filter(p=>c=='all'||p.cat==c).map(p=>`<div class="pc ${c=='listing'?p.c:(p.cat=='corporate'?'h':'')}" data-img="${p.id}" role="button" tabindex="0"><img src="${DRIVE(p.id)}" alt="${p.l}" loading="lazy" decoding="async"><div class="cap">${p.l}</div></div>`).join('')}
+$('#pg').innerHTML=h;$('#pg').classList.toggle('embg',c=='ig');$('#pfull').hidden=c=='corporate';document.querySelectorAll('.pc[data-u]').forEach(e=>e.onclick=()=>openM(e.dataset.u));document.querySelectorAll('.pc[data-img]').forEach(e=>e.onclick=()=>openImg(e.dataset.img))}
+filters($('#pfilters'),[["listing","Property listings"],["corporate","Corporate headshots"],["ig","Company posts"]],drawP);drawP('listing');
 $('#eye').innerHTML=DATA.eye.map(e=>`<div><h4>${e[0]}</h4><p>${e[1]}</p></div>`).join('');
 const tl=DATA.tools.map(t=>`<div class="tool"><img src="assets/tools/${t[1]}" alt="${t[0]} logo" loading="lazy" onerror="this.remove()"><span>${t[0]}</span></div>`).join('');$('#mt').innerHTML=tl+tl;
 function embed(u){let m;if(m=u.match(/instagram\.com\/(reel|p|tv)\/([^/?]+)/))return[`https://www.instagram.com/${m[1]}/${m[2]}/embed`,0];if(m=u.match(/(?:youtu\.be\/|v=|shorts\/)([\w-]{11})/))return[`https://www.youtube.com/embed/${m[1]}?autoplay=1&playsinline=1`,1];if(m=u.match(/tiktok\.com\/.*video\/(\d+)/))return[`https://www.tiktok.com/embed/v2/${m[1]}`,0];return[u,0]}
@@ -318,13 +322,13 @@ function onS(){ticking=false;const y=scrollY,vh=innerHeight,max=hero.offsetHeigh
  if(y<hero.offsetHeight){
   $('#hbg2').style.opacity=p;
   $('#por').style.transform=`translateX(-50%) scale(${1.03-p*.03}) translateY(${(1-p)*12}px)`;
-  const hn=$('#hname'),c=Math.round(11+p*244);hn.style.transform=`translateY(${-p*60}px) scale(${1-p*.15})`;hn.style.letterSpacing=(-.04+p*.04)+'em';hn.style.color=`rgb(${c},${c},${c})`;hn.style.opacity=1-p*.35;
+  const hn=$('#hname'),c=Math.round(11+p*244);$('#n1').style.transform=`translateY(${-p*40}px)`;$('#n2').style.transform=`translateY(${p*30}px)`;hn.style.letterSpacing=(-.04+p*.04)+'em';hn.style.color=`rgb(${c},${c},${c})`;hn.style.opacity=1-p*.35;
   const tc=p>.5?'#ddd':'#111';$('#hsub').style.color=tc;$('#hint').style.color=tc;
   words.forEach((w,i)=>{const on=p>i/4-.02;w.style.color=on?(p>.5?'#fff':'#000'):(p>.5?'rgba(255,255,255,.18)':'rgba(0,0,0,.18)')})}
  let cur='';secs.forEach(s=>{if(s.getBoundingClientRect().top<=nav.offsetHeight+80)cur=s.id});
  tabs.forEach(t=>{const on=t.dataset.go==cur||(cur=='tools'&&t.dataset.go=='photo');if(on&&!t.classList.contains('on')&&MOBILE)t.scrollIntoView({inline:'center',block:'nearest'});t.classList.toggle('on',on)})}
 addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(onS)}},{passive:true});
-addEventListener('resize',onS);onS();
+function setNh(){document.documentElement.style.setProperty('--nh',nav.offsetHeight+'px')}setNh();addEventListener('resize',()=>{setNh();onS()});onS();
 </script>
 </body>
 </html>
