@@ -121,18 +121,43 @@ p.l{color:#a9a9a9;font-size:16px;line-height:1.7;max-width:620px;margin:0}
 .mbox iframe{width:100%;height:100%;border:0}
 .x{position:absolute;top:calc(10px + env(safe-area-inset-top));right:14px;width:48px;height:48px;font-size:34px;line-height:1;cursor:pointer;color:#fff;background:none;border:0}
 body.lock{overflow:hidden}
-img,.bgi,.lbx-img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+img,.bgi,.lbx-img,.fb-pg{-webkit-user-drag:none;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 .bv{display:flex;align-items:baseline;gap:8px;margin-top:8px;font-size:13px;color:#ddd}.bv b{font-size:clamp(32px,3.4vw,48px);font-weight:800;letter-spacing:-.035em;line-height:1;color:#fff}
 .bl{margin-top:10px;font-size:13px;color:#ddd}.bl b{font-size:clamp(20px,2vw,28px);font-weight:800;letter-spacing:-.02em;color:#fff}
 .lc .tg{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pc .bgi{position:absolute;inset:0;background:center/cover no-repeat;transition:.7s}
-.pc.lst{aspect-ratio:4/3}.pc.lst:hover .bgi{transform:scale(1.05)}
+.pc.lst{aspect-ratio:3/2}.pc.lst:hover .bgi{transform:scale(1.05)}
 .pc .cap span{display:block;margin-top:5px;color:#aaa;letter-spacing:.14em}
-.pg.lstg{grid-template-columns:repeat(3,1fr)}
+.pc.lst .cap{padding:22px 18px 16px;font-size:12px}
+.pc .flipb{position:absolute;top:12px;right:12px;z-index:2;font-size:10px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;background:rgba(0,0,0,.55);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.35);color:#fff;padding:7px 11px;border-radius:20px;transition:.3s}
+@media(hover:hover){.pc.lst:hover .flipb{background:#fff;color:#000}}
+.pg.lstg{grid-template-columns:repeat(2,1fr)}
+/* Brochure flipbook */
+.fb-o{position:fixed;inset:0;z-index:120;background:radial-gradient(ellipse at 50% 40%,#1b1b1d,#050505 75%);display:none;flex-direction:column;align-items:center;padding:64px 12px calc(18px + env(safe-area-inset-bottom))}
+.fb-o.on{display:flex;animation:lfade .5s both}
+.fb-t{position:absolute;top:calc(22px + env(safe-area-inset-top));left:5vw;right:80px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#bbb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fb-stage{position:relative;flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;touch-action:pan-y;cursor:grab;user-select:none;-webkit-user-select:none}
+.fb-stage.drag{cursor:grabbing}
+.fb-book{position:relative;perspective:2200px;box-shadow:0 30px 80px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.06);border-radius:2px 6px 6px 2px;background:#111}
+.fb-book:after{content:"";position:absolute;left:0;top:0;bottom:0;width:3.5%;z-index:60;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.38),rgba(0,0,0,.08) 55%,transparent)}
+.fb-leaf{position:absolute;inset:0;transform-origin:left center;transform-style:preserve-3d;will-change:transform}
+.fb-pg{position:absolute;inset:0;background:#111 center/100% 100% no-repeat;backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.fb-pg i,.fb-pg b{position:absolute;inset:0;pointer-events:none;opacity:0}
+.fb-pg i{background:linear-gradient(90deg,rgba(0,0,0,.7),rgba(0,0,0,.1) 65%,rgba(255,255,255,.16))}
+.fb-pg b{background:linear-gradient(90deg,rgba(0,0,0,.55),rgba(0,0,0,.18))}
+.fb-a{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:1px solid rgba(255,255,255,.45);background:rgba(0,0,0,.5);color:#fff;font-size:30px;line-height:1;cursor:pointer;z-index:70;display:flex;align-items:center;justify-content:center;padding:0 0 4px;font-family:inherit}
+.fb-a:hover{background:#fff;color:#000}.fb-a:disabled{opacity:.25;pointer-events:none}
+.fb-a.p{left:max(10px,1.5vw)}.fb-a.n{right:max(10px,1.5vw)}
+.fb-f{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:14px;width:min(420px,80vw)}
+.fb-c{font-size:12px;letter-spacing:.22em;color:#bbb}
+.fb-bar{height:2px;width:100%;background:#2a2a2a;border-radius:2px;overflow:hidden}.fb-bar b{display:block;height:100%;width:0;background:#fff;transition:width .6s}
+.fb-h{font-size:11px;letter-spacing:.14em;color:#777;text-transform:uppercase;text-align:center}
+.fb-rot{display:none;font-size:11px;color:#999;text-align:center;margin-top:6px}
+@media(max-width:700px) and (orientation:portrait){.fb-rot{display:block}.fb-a{width:42px;height:42px;font-size:24px;top:auto;bottom:-62px;transform:none}.fb-a.p{left:calc(50% - 110px)}.fb-a.n{right:calc(50% - 110px)}.fb-f{margin-top:70px}.fb-stage{padding-bottom:40px}}
 .pg.embg{grid-template-columns:repeat(2,1fr);--eh:720px}
 .pc.emb{height:var(--eh,720px);aspect-ratio:auto}.pc.emb iframe{height:100%}
 @media(min-width:1580px){.pg.embg{grid-template-columns:repeat(4,1fr);--eh:600px}}
-@media(max-width:700px){.pg.embg{grid-template-columns:1fr;--eh:600px}.pg.lstg{grid-template-columns:repeat(2,1fr)}.bv b{font-size:clamp(28px,8.5vw,36px)}}
+@media(max-width:700px){.pg.embg{grid-template-columns:1fr;--eh:600px}.pg.lstg{grid-template-columns:1fr}.bv b{font-size:clamp(28px,8.5vw,36px)}}
 .lbx{position:fixed;inset:0;z-index:110;background:#050505;display:none;flex-direction:column;align-items:center;padding:64px 16px calc(22px + env(safe-area-inset-bottom))}
 .lbx.on{display:flex}
 .lbx-t{position:absolute;top:calc(22px + env(safe-area-inset-top));left:5vw;right:80px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#bbb;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -235,6 +260,7 @@ img,.bgi,.lbx-img{-webkit-user-drag:none;user-select:none;-webkit-user-select:no
 <footer class="foot"><span>© 2026 Charles Bonifacio · Al Rigga, Dubai</span><span>Videography · Photography · Editing</span></footer>
 
 <div class="lbx" id="lbx" role="dialog" aria-modal="true" aria-label="Photo viewer"><button class="x" id="lbx-x" aria-label="Close">×</button><div class="lbx-t" id="lbx-t"></div><div class="lbx-stage" id="lbx-stage"><div class="lbx-img" id="lbx-img"></div></div><button class="lbx-a prev" id="lbx-p" aria-label="Previous photo">‹</button><button class="lbx-a next" id="lbx-n" aria-label="Next photo">›</button><div class="lbx-c" id="lbx-c"></div></div>
+<div class="fb-o" id="fb" role="dialog" aria-modal="true" aria-label="Brochure viewer"><button class="x" id="fb-x" aria-label="Close">×</button><div class="fb-t" id="fb-t"></div><div class="fb-stage" id="fb-stage"><div class="fb-book" id="fb-book"></div><button class="fb-a p" id="fb-p" aria-label="Previous page">‹</button><button class="fb-a n" id="fb-n" aria-label="Next page">›</button></div><div class="fb-f"><div class="fb-c" id="fb-c"></div><div class="fb-bar"><b id="fb-bb"></b></div><div class="fb-h">Swipe, tap or use ← → to turn the page</div><div class="fb-rot">Tip: rotate your phone for a larger view</div></div></div>
 <div class="modal" id="modal" role="dialog" aria-modal="true"><button class="x" id="mx" aria-label="Close">×</button><div class="mbox" id="mbox"></div><a class="btn" id="mlink" target="_blank" rel="noopener">Open original ↗</a></div>
 
 <script>
@@ -287,9 +313,16 @@ vlogs:[
  {t:"Mansion Villa",p:"AED 65,000,000",v:34000,l:838,id:"3aNYiY8LuAs"},
  {t:"Mansion in Pearl Jumeirah",p:"AED 44,000,000",v:75000,l:1700,id:"uJLV6CarbEg"},
  {t:"Mansion in Dubai Hills View",p:"AED 178,000,000",v:41000,l:1000,id:"wYeoupo3VBg"}],
-/* Property listings carousel. One entry per property: t = name, dir = folder, n = number of photos.
-   Files inside each folder are 01.jpg, 02.jpg ... (01.jpg is the cover shown on the card). */
-listings:[],
+/* Property listings. Each card shows its cover image; tapping it opens the brochure as a page-flip book.
+   t = name, cover = card image (assets/covers), dir = folder of brochure pages (01.webp, 02.webp ...),
+   n = number of pages, ar = page width / height. */
+listings:[
+ {t:"Address Tower 2",cover:"assets/covers/address-tower-2.jpg",dir:"assets/brochures/address-tower-2",n:4,ar:1.4142},
+ {t:"Al Barari",cover:"assets/covers/al-barari.jpg",dir:"assets/brochures/al-barari",n:5,ar:1.4142},
+ {t:"Emirates Hills",cover:"assets/covers/emirates-hills.jpg",dir:"assets/brochures/emirates-hills",n:6,ar:1.7778},
+ {t:"Palm Jumeirah — Frond L",cover:"assets/covers/palm-jumeirah-frond-l.jpg",dir:"assets/brochures/palm-jumeirah-frond-l",n:5,ar:1.4142},
+ {t:"Palm Jumeirah — Signature Villa",cover:"assets/covers/palm-jumeirah-signature-villa.jpg",dir:"assets/brochures/palm-jumeirah-signature-villa",n:4,ar:1.4142},
+ {t:"One at Palm Jumeirah",cover:"assets/covers/one-at-palm-jumeirah.jpg",dir:"assets/brochures/one-at-palm-jumeirah",n:12,ar:1.3333}],
 /* Photos load from your Google Drive. c: "w" = wide, "h" = tall */
 photos:[
  {id:"1kB6oXxrGPEbMxeMNZlChVISVSCemvLbB",cat:"listing",l:"One at Palm Jumeirah",c:"w h"},
@@ -345,11 +378,11 @@ document.querySelectorAll('.lc').forEach(e=>e.onclick=()=>openM(e.dataset.u));
 $('#feat').onclick=()=>openM(DATA.videos[1].url);
 function drawP(c){let h,lst=false;
  if(c=='ig'){h=DATA.igPosts.map((u,i)=>`<div class="pc emb"><iframe src="${embed(u)[0]}" loading="lazy" scrolling="no" allowtransparency="true" title="Springfield Properties Instagram post ${i+1}"></iframe></div>`).join('')}
- else if(c=='listing'&&DATA.listings.length){lst=true;h=DATA.listings.map((L,i)=>`<div class="pc lst" data-l="${i}" role="button" tabindex="0" aria-label="${L.t}, ${L.n} photos"><div class="bgi" style="background-image:url('${L.dir}/01.jpg')"></div><div class="cap">${L.t}<span>${L.n} photos</span></div></div>`).join('')}
+ else if(c=='listing'&&DATA.listings.length){lst=true;h=DATA.listings.map((L,i)=>`<div class="pc lst" data-l="${i}" role="button" tabindex="0" aria-label="Open ${L.t} brochure, ${L.n} pages"><div class="bgi" style="background-image:url('${L.cover}')"></div><span class="flipb">Flip through ↗</span><div class="cap">${L.t}<span>${L.n}-page brochure</span></div></div>`).join('')}
  else{h=DATA.photos.filter(p=>c=='all'||p.cat==c).map(p=>`<div class="pc ${c=='listing'?p.c:(p.cat=='corporate'?'h':'')}" data-img="${p.id}" role="button" tabindex="0"><img src="${DRIVE(p.id)}" alt="${p.l}" loading="lazy" decoding="async" draggable="false"><div class="cap">${p.l}</div></div>`).join('')}
 $('#pg').innerHTML=h;$('#pg').classList.toggle('embg',c=='ig');$('#pg').classList.toggle('lstg',lst);$('#pwa').href='https://wa.me/'+WA+'?text='+encodeURIComponent(WAMSG[c]);$('#pwa').textContent=WALAB[c];
  document.querySelectorAll('.pc[data-img]').forEach(e=>e.onclick=()=>openImg(e.dataset.img));
- document.querySelectorAll('.pc[data-l]').forEach(e=>e.onclick=()=>{const L=DATA.listings[e.dataset.l];openLbx(Array.from({length:L.n},(_,k)=>L.dir+'/'+String(k+1).padStart(2,'0')+'.jpg'),L.t,0)})}
+ document.querySelectorAll('.pc[data-l]').forEach(e=>e.onclick=()=>openFb(DATA.listings[e.dataset.l]))}
 filters($('#pfilters'),[["listing","Property listings"],["corporate","Corporate headshots"],["ig","Company posts"]],drawP);drawP('listing');
 $('#eye').innerHTML=DATA.eye.map(e=>`<div><h4>${e[0]}</h4><p>${e[1]}</p></div>`).join('');
 const tl=DATA.tools.map(t=>`<div class="tool"><img src="assets/tools/${t[1]}" alt="${t[0]} logo" loading="lazy" onerror="this.remove()"><span>${t[0]}</span></div>`).join('');$('#mt').innerHTML=tl+tl;
@@ -367,7 +400,36 @@ function closeLbx(){clearInterval(LB.t);$('#lbx').classList.remove('on');$('#lbx
 $('#lbx-x').onclick=closeLbx;$('#lbx-p').onclick=()=>lbGo(-1);$('#lbx-n').onclick=()=>lbGo(1);
 $('#lbx').onclick=e=>{if(e.target.id=='lbx'||e.target.id=='lbx-stage')closeLbx()};
 let tx=null;$('#lbx-stage').addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});$('#lbx-stage').addEventListener('touchend',e=>{if(tx===null||LB.imgs.length<2)return;const dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>40)lbGo(dx<0?1:-1)},{passive:true});
-document.addEventListener('contextmenu',e=>{if(e.target.closest('img,.bgi,.lbx,.pc,.ap,.por,.av'))e.preventDefault()});
+/* Brochure flipbook. Each PDF page is a pre-rendered image (assets/brochures/<name>/NN.webp). Pages are CSS backgrounds, so they can be read but not saved with a click. */
+const FB={L:null,n:0,cur:0,leaves:[],book:null,bw:800,d:null};
+function fbLoad(k){const p=FB.leaves[k]&&FB.leaves[k].firstChild;if(p&&!p.dataset.l){p.dataset.l=1;p.style.backgroundImage='url("'+FB.L.dir+'/'+String(k+1).padStart(2,'0')+'.webp")'}}
+function fbSet(k,a,anim){const l=FB.leaves[k];if(!l)return;const t=anim?'.85s':'0s',p=Math.max(0,Math.min(1,-a/100));
+ l.style.transition='transform '+t+' cubic-bezier(.45,.05,.2,1)';l.style.transform='rotateY('+a+'deg)';
+ const i=l.firstChild.querySelector('i');i.style.transition='opacity '+t;i.style.opacity=(p*.7).toFixed(3);
+ const u=FB.leaves[k+1];if(u){const b=u.firstChild.querySelector('b');b.style.transition='opacity '+t;b.style.opacity=(.55*(1-p)).toFixed(3)}}
+function fbUpd(){for(let k=FB.cur;k<Math.min(FB.n,FB.cur+4);k++)fbLoad(k);$('#fb-c').textContent=(FB.cur+1)+' / '+FB.n;$('#fb-bb').style.width=((FB.cur+1)/FB.n*100)+'%';$('#fb-p').disabled=FB.cur<=0;$('#fb-n').disabled=FB.cur>=FB.n-1}
+function fbNext(){if(FB.cur>=FB.n-1)return;fbSet(FB.cur,-100,true);FB.cur++;fbUpd()}
+function fbPrev(){if(FB.cur<=0)return;FB.cur--;fbSet(FB.cur,0,true);fbUpd()}
+function fbSize(){if(!FB.L)return;const s=$('#fb-stage'),pad=innerWidth<700?6:84,ar=FB.L.ar;let w=Math.min(s.clientWidth-pad*2,s.clientHeight*ar,1500);FB.bw=w;FB.book.style.width=w+'px';FB.book.style.height=(w/ar)+'px'}
+function openFb(L){FB.L=L;FB.n=L.n;FB.cur=0;FB.leaves=[];const b=FB.book=$('#fb-book');b.innerHTML='';
+ for(let k=0;k<L.n;k++){const l=document.createElement('div');l.className='fb-leaf';l.style.zIndex=L.n-k;l.innerHTML='<div class="fb-pg"><b></b><i></i></div>';b.appendChild(l);FB.leaves.push(l)}
+ $('#fb-t').textContent=L.t+' — brochure';$('#fb').classList.add('on');document.body.classList.add('lock');fbSize();FB.leaves.forEach((l,k)=>fbSet(k,0,false));fbUpd();setTimeout(()=>{for(let k=0;k<FB.n;k++)fbLoad(k)},500)}
+function closeFb(){$('#fb').classList.remove('on');$('#fb-book').innerHTML='';FB.leaves=[];FB.L=null;FB.d=null;document.body.classList.remove('lock')}
+$('#fb-x').onclick=closeFb;$('#fb-p').onclick=fbPrev;$('#fb-n').onclick=fbNext;
+(function(){const st=$('#fb-stage');
+ st.addEventListener('pointerdown',e=>{if(e.target.closest('.fb-a'))return;FB.d={x:e.clientX,m:false,dir:0,k:-1,p:0}});
+ st.addEventListener('pointermove',e=>{const d=FB.d;if(!d)return;const dx=e.clientX-d.x;
+  if(!d.m){if(Math.abs(dx)<8)return;d.dir=dx<0?1:-1;if((d.dir==1&&FB.cur>=FB.n-1)||(d.dir==-1&&FB.cur<=0)){FB.d=null;return}d.m=true;d.k=d.dir==1?FB.cur:FB.cur-1;try{st.setPointerCapture(e.pointerId)}catch(_){}st.classList.add('drag')}
+  d.p=Math.max(0,Math.min(1,(d.dir==1?-dx:dx)/(FB.bw*.8)));fbSet(d.k,d.dir==1?-100*d.p:-100*(1-d.p),false)});
+ function end(e,cancel){const d=FB.d;FB.d=null;st.classList.remove('drag');if(!d)return;
+  if(!d.m){if(cancel)return;const r=FB.book.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeFb();else if(e.clientX>r.left+r.width/2)fbNext();else fbPrev();return}
+  if(!cancel&&d.p>.22){if(d.dir==1){fbSet(d.k,-100,true);FB.cur++}else{fbSet(d.k,0,true);FB.cur--}}
+  else fbSet(d.k,d.dir==1?0:-100,true);
+  fbUpd()}
+ st.addEventListener('pointerup',e=>end(e,false));st.addEventListener('pointercancel',e=>end(e,true));
+ addEventListener('resize',fbSize);
+ document.addEventListener('keydown',e=>{if(!$('#fb').classList.contains('on'))return;if(e.key=='ArrowRight')fbNext();else if(e.key=='ArrowLeft')fbPrev();else if(e.key=='Escape')closeFb()})})();
+document.addEventListener('contextmenu',e=>{if(e.target.closest('img,.bgi,.lbx,.fb-o,.pc,.ap,.por,.av'))e.preventDefault()});
 document.addEventListener('dragstart',e=>{if(e.target.tagName=='IMG')e.preventDefault()});
 function closeM(){$('#modal').classList.remove('on');$('#mbox').innerHTML='';document.body.classList.remove('lock')}
 $('#mx').onclick=closeM;$('#modal').onclick=e=>{if(e.target.id=='modal')closeM()};
